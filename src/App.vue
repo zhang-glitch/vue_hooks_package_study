@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import {Form, CellGroup, Field, Button, showToast, Cell, ActionSheet} from "vant"
 import { ref } from 'vue';
-import { useI18n } from "./i18n/useI18n";
+import { useI18n, changeLocale } from "./i18n/useI18n";
+import {useAppStore} from "./store/index"
+import {useLocale} from "./i18n/useLocale"
+import langContent from "./test"
 
   const username = ref('');
   const password = ref('');
@@ -24,9 +27,13 @@ import { useI18n } from "./i18n/useI18n";
   };
 
   const {t} = useI18n()
+  const {changeLocale} = useLocale()
 
-  const handleLangChange = (lang: string) => {
-    localStorage.setItem("localeLang", lang)
+  const handleLangChange = async (lang: string) => {
+    console.log("======lang", lang)
+    // localStorage.setItem("localeLang", lang)
+    await changeLocale(lang)
+    useAppStore().changeLocaleLang(lang)
     location.reload()
   }
 
@@ -36,6 +43,8 @@ import { useI18n } from "./i18n/useI18n";
 <template>
   <div class="div">{{ t('routes.a.btn') }}</div>
   <div class="div">{{ t('common.commonBtn') }}</div>
+  <!-- 对于通过配置设置的国际化内容，是不能更新的，所以需要通过location.reload()刷新页面 -->
+  <div class="div">{{ langContent.a }}</div>
   <button @click="handleLangChange('zh_CN')">中文</button>
   <button @click="handleLangChange('en')">英文</button>
   <Form @submit="onSubmit">

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
+    "pinia": "^2.1.7",
     "postcss-px-to-viewport": "^1.1.1",
     "ts-node": "^10.9.1",
     "vant": "^4.7.3",

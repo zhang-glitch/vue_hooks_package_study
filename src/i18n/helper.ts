@@ -2,6 +2,11 @@
 
 import { set } from 'lodash-es';
 
+// 设置html lang属性
+export function setHtmlPageLang(locale: "zh_CN" | "en") {
+  document.querySelector('html')?.setAttribute('lang', locale);
+}
+
 export function genMessage(langs: any, prefix = 'lang') {
   const obj: Record<string, any> = {};
 
