@@ -2,7 +2,7 @@ import { useAppStore } from './../store/index';
 import { setHtmlPageLang } from "./helper";
 import { i18n } from "./index"
 
-import {unref} from "vue"
+import {unref, watch} from "vue"
 export type LocaleType = "zh_CN" | "en"
 
 function setI18nLanguage(locale: LocaleType) {
@@ -44,7 +44,22 @@ export function useLocale() {
 
     return locale;
   }
+
+    /**
+   *
+   * @param  {...any} cbs 所有的回调
+   */
+    function watchSwitchLang(...cbs: Function[]) {
+      watch(
+        // TODO: 监听语言变化
+        () => useAppStore().localeLang,
+        () => {
+          cbs.forEach((cb) => cb(useAppStore().localeLang));
+        },
+      );
+    }
   return {
-    changeLocale
+    changeLocale,
+    watchSwitchLang
   }
 }

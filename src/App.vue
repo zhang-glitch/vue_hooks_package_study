@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Form, CellGroup, Field, Button, showToast, Cell, ActionSheet} from "vant"
 import { ref } from 'vue';
-import { useI18n, changeLocale } from "./i18n/useI18n";
+import { useI18n,  } from "./i18n/useI18n";
 import {useAppStore} from "./store/index"
 import {useLocale} from "./i18n/useLocale"
 import langContent from "./test"
@@ -27,15 +27,20 @@ import langContent from "./test"
   };
 
   const {t} = useI18n()
-  const {changeLocale} = useLocale()
+  const {changeLocale, watchSwitchLang} = useLocale()
+  const content = ref(langContent())
 
   const handleLangChange = async (lang: string) => {
     console.log("======lang", lang)
     // localStorage.setItem("localeLang", lang)
     await changeLocale(lang)
     useAppStore().changeLocaleLang(lang)
-    location.reload()
+    // location.reload()
   }
+  watchSwitchLang(() => {
+    console.log("=================切换语言，执行这里回调，不需要重新刷新页面")
+    content.value = langContent()
+  })
 
 
 </script>
