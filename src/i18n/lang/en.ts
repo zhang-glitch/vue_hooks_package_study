@@ -4,6 +4,7 @@ import { genMessage } from '../helper';
 
 // 获取en文件夹下的所有ts结尾文件，嵌套文件
 const modules = import.meta.glob('./en/**/*.ts', { eager: true });
+console.log("=====modules", modules)
 
 export default {
   message: {

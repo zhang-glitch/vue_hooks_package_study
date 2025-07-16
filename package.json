@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "a": "ts-node ./src/main.ts"
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
@@ -25,5 +26,8 @@
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5"
+  },
+  "config": {
+    "dev": "zhanghao"
   }
 }

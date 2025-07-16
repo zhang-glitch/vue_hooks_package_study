@@ -16,4 +16,8 @@ async function bootstrap () {
   app.mount('#app')
 }
 
+// 可以设置脚本，执行获取package中的字段内容
+// console.log("====", process.env.npm_package_config_dev)
+// console.log("====", process.env.npm_package_name)
+
 bootstrap()
